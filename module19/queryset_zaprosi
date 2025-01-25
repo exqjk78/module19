@@ -1,0 +1,13 @@
+from task1.models import Game,Buyer
+Buyer.objects.create(name='Misha',balance=1000,age=16)
+Buyer.objects.create(name='Andry',balance=2000,age=19)
+Buyer.objects.create(name='Mark',balance=3000,age=22)
+Game.objects.create(title='Warcraft',cost=1000,size=300,description='game1',age_limited=True)
+Game.objects.create(title='Cyberpunk 2077',cost=500,size=600,description='game2',age_limited=True)
+Game.objects.create(title='DOOM',cost=50,size=10,description='game3')
+fb = Buyer.objects.get(id=1)
+sb = Buyer.objects.get(id=2)
+tb = Buyer.objects.get(id=3)
+Game.objects.get(id=1).buyer.set((sb,tb))
+Game.objects.get(id=2).buyer.set((sb,))
+Game.objects.get(id=3).buyer.set((fb,sb,tb))
