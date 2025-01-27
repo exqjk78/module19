@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .forms import UserRegister
 from .models import *
 # Create your views here.
@@ -59,3 +60,9 @@ def cart_page(req):
     }
     return render(req, 'cart.html', context)
 
+def news_page(req):
+    news_list = News.objects.all().order_by('-date')
+    paginator = Paginator(news_list, 3)
+    page_number = req.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(req, "news.html",{"news": page_obj})

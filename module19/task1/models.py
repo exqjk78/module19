@@ -19,3 +19,8 @@ class Game(models.Model):
 
     def __str__(self):
         return self.title
+
+class News(models.Model):
+    title = models.CharField(max_length=100,default='Unnamed')
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
